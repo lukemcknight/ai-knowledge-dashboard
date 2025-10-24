@@ -1,0 +1,32 @@
+# ---- Python / FastAPI (server) ----
+server/__pycache__/
+server/**/*.py[cod]
+server/*.db
+server/*.sqlite3
+server/.env
+server/.venv/
+server/venv/
+server/instance/
+server/*.log
+
+# ---- Node / React (client) ----
+client/node_modules/
+client/dist/
+client/build/
+client/.env
+client/.env.local
+client/.env.development
+client/.env.production
+
+# ---- General ----
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# ---- Dependency Lock Files (optional, comment out if you want to track one) ----
+# client/pnpm-lock.yaml
+# client/yarn.lock
+
+# ---- OS-specific ----
+Thumbs.db
