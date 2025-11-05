@@ -32,3 +32,18 @@ export async function sendQuery(userQuery) {
 
     return data;
 }
+
+export async function getArticles() {
+    const response = await fetch(`${API_BASE_URL}/articlefind/`, {
+        method: "GET"
+    })
+
+    if (!response.ok) {
+        throw new Error(`Couldn't find articles: ${response.statusText}`)
+    }
+
+    const data = await response.json();
+    console.log("Found articles", data);
+
+    return data;
+}

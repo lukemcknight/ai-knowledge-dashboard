@@ -1,32 +1,34 @@
-# ---- Python / FastAPI (server) ----
-server/__pycache__/
-server/**/*.py[cod]
-server/*.db
-server/*.sqlite3
-server/.env
-server/.venv/
-server/venv/
-server/instance/
-server/*.log
+# Node
+node_modules/
+dist/
+build/
+.env
+.env.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# ---- Node / React (client) ----
-client/node_modules/
-client/dist/
-client/build/
-client/.env
-client/.env.local
-client/.env.development
-client/.env.production
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+.env
+.venv/
+venv/
+env/
+*.sqlite3
 
-# ---- General ----
-*.log
-.DS_Store
+# IDEs
 .vscode/
 .idea/
+*.swp
 
-# ---- Dependency Lock Files (optional, comment out if you want to track one) ----
-# client/pnpm-lock.yaml
-# client/yarn.lock
-
-# ---- OS-specific ----
+# OS
+.DS_Store
 Thumbs.db
+
+# Misc
+*.log
+
