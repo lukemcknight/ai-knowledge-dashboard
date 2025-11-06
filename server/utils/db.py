@@ -11,4 +11,5 @@ client = client = MongoClient(
     tlsCAFile=certifi.where()
 )
 db = client["ai_dashboard"]
-collection = db["pdf_chunks"]
+pdf_collection = db["pdf"]
+users_collection = db["users"]

@@ -1,5 +1,5 @@
 from utils.gemini_utils import gemini_client
-from utils.db import collection
+from utils.db import pdf_collection
 
 def embed_query(query: str):
     response = gemini_client.models.embed_content(
@@ -11,7 +11,7 @@ def embed_query(query: str):
 def search_and_answer(user_query, top_k=5):
     query_embedding = embed_query(user_query)
 
-    results = collection.aggregate([
+    results = pdf_collection.aggregate([
         {
             "$vectorSearch": {
                 "queryVector": query_embedding,

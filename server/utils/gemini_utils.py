@@ -1,7 +1,7 @@
 from google import genai
 import os
 from dotenv import load_dotenv
-from utils.db import collection
+from utils.db import pdf_collection
 
 load_dotenv()
 
@@ -16,12 +16,12 @@ def generate_embedding(text: str):
 
 def embed_content_for_file(filename):
     try:
-        docs = collection.find({ "filename": filename, "embedding": { "$exists": False } })
+        docs = pdf_collection.find({ "filename": filename, "embedding": { "$exists": False } })
         
         for doc in docs:
             embedding_vector = generate_embedding(doc['text'])
             
-            collection.update_one(
+            pdf_collection.update_one(
                 {"_id": doc["_id"]},
                 {"$set": {"embedding": embedding_vector}}
             )

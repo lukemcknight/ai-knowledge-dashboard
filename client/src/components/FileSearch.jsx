@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { sendQuery } from '../api/api.js';
+import { sendQuery } from '../api/file.js';
 import SearchInput from "./SearchInput.jsx";
 
 export default function FileSearch({ setAnswer, setLoading, setChats }) {

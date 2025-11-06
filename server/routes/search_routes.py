@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File
 from utils.pdf_utils import parse_and_chunk_pdf
-from utils.db import collection
+from utils.db import pdf_collection
 from pydantic import BaseModel
 from utils.search_utils import search_and_answer
 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, BackgroundTasks
 from utils.pdf_utils import parse_and_chunk_pdf
-from utils.db import collection
+from utils.db import pdf_collection
 from utils.gemini_utils import embed_content_for_file
 
 router = APIRouter()
@@ -13,7 +13,7 @@ async def upload_file(file: UploadFile = File(...), background_tasks: Background
     if not chunks:
         return {"error": "No text extracted from PDF"}
     
-    result = collection.insert_many(chunks)
+    result = pdf_collection.insert_many(chunks)
 
     if background_tasks:
         background_tasks.add_task(embed_content_for_file, file.filename)

@@ -1,9 +1,9 @@
-from utils.db import collection
+from utils.db import pdf_collection
 
 async def find_articles():
     files = []
     try:
-        for doc in collection.find({}):
+        for doc in pdf_collection.find({}):
             if doc['filename'] in files:
                 continue
             else:

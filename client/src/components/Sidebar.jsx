@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import { getArticles } from "../api/api";
-import { sendFile } from '../api/api.js';
+import { getArticles, sendFile } from "../api/file.js";
 import { Upload, Search, Loader2 } from 'lucide-react';
 
 export default function Sidebar() {

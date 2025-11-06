@@ -34,7 +34,7 @@ export default function SearchInput({ onSend, setChats }) {
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Type a message..."
-                    className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 outline-none placeholder:text-muted-foreground"
+                    className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 outline-none placeholder:text-muted-foreground text-muted-foreground"
                 />
 
                 <button

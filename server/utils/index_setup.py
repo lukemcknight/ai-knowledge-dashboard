@@ -1,4 +1,4 @@
-from utils.db import client, collection
+from utils.db import client, pdf_collection
 from pymongo.operations import SearchIndexModel
 import time
 
@@ -19,7 +19,7 @@ search_index_model = SearchIndexModel(
   type="vectorSearch"
 )
 
-result = collection.create_search_index(model=search_index_model)
+result = pdf_collection.create_search_index(model=search_index_model)
 print("New search index named " + result + " is building.")
 
 # Wait for initial sync to complete
@@ -29,7 +29,7 @@ if predicate is None:
   predicate = lambda index: index.get("queryable") is True
 
 while True:
-  indices = list(collection.list_search_indexes(result))
+  indices = list(pdf_collection.list_search_indexes(result))
   if len(indices) and predicate(indices[0]):
     break
   time.sleep(5)

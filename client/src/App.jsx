@@ -1,15 +1,15 @@
 import './App.css';
+import AuthPage from './pages/AuthPage';
 import ChatPage from './pages/ChatPage';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<ChatPage />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<ChatPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+      </Routes>
     </div>
   );
 }
