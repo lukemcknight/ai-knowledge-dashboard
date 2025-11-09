@@ -4,7 +4,7 @@ import fitz
 CHUNK_SIZE = 1000
 OVERLAP = 100
 
-def parse_and_chunk_pdf(file_bytes, filename):
+def parse_and_chunk_pdf(file_bytes, filename, uid):
     pdf_stream = BytesIO(file_bytes)
     
     try:
@@ -23,6 +23,7 @@ def parse_and_chunk_pdf(file_bytes, filename):
             chunk_text = page_text[start:start + CHUNK_SIZE]
             chunks.append({
                 "text": chunk_text,
+                "uid": uid,
                 "filename": filename,
                 "page_number": page_number,
                 "chunk_index": chunk_index

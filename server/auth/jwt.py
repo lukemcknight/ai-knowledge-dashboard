@@ -9,9 +9,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 router = APIRouter()
 
-def create_jwt(email: str):
+def create_jwt(email: str, user_id: str):
     payload = {
         "sub": email,
+        "uuid": user_id,
         "exp": datetime.utcnow() + timedelta(hours=1)
     }
     return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
@@ -29,6 +30,18 @@ def get_current_user(authorization: str = Header(None)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
         return payload["sub"]
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token expired")
+    except jwt.InvalidTokenError:
+        raise HTTPException(status_code=401, detail=" Invalid token")
+    
+def get_current_uid(authorization: str = Header(None)):
+    if not authorization:
+        raise HTTPException(status_code=401, detail="Missing Authorization header")
+    token = authorization.split(" ")[1]
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        return payload["uuid"]
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
     except jwt.InvalidTokenError:

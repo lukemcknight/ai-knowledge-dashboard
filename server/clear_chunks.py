@@ -1,4 +1,4 @@
-from utils.db import collection
+from utils.db import pdf_collection
 
-result = collection.delete_many({})
+result = pdf_collection.delete_many({})
 print(f"Deleted {result.deleted_count} documents")

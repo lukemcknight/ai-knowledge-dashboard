@@ -1,17 +1,36 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import MessageBubble from './MessageBubble';
 import { Loader2 } from 'lucide-react';
 
 export default function ChatDisplay({ answer, loading, chats, setChats }) {
+    const [hydrated, setHydrated] = useState(false);
 
     useEffect(() => {
-        if (answer) {
-            setChats((prevChats) => [
-                ...prevChats,
+        const stored = localStorage.getItem("storedChats");
+        if (stored) {
+            try {
+                setChats(JSON.parse(stored));
+            } catch (err) {
+                console.error("Failed to parse chats:", err);
+            }
+        }
+        setHydrated(true);
+    }, [setChats]);
+
+    useEffect(() => {
+        if (hydrated && answer) {
+            setChats((prev) => [
+                ...prev,
                 { isUser: false, text: answer }
             ]);
         }
-    }, [answer, setChats]);
+    }, [answer, setChats, hydrated]);
+
+    useEffect(() => {
+        if (hydrated && Array.isArray(chats)) {
+            localStorage.setItem("storedChats", JSON.stringify(chats));
+        }
+    }, [chats, hydrated]);
 
     return (
         <div className="w-full px-4">

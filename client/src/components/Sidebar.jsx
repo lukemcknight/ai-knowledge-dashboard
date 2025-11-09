@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { getArticles, sendFile } from "../api/file.js";
 import { Upload, Search, Loader2 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext.jsx';
 
 export default function Sidebar() {
+    const { user } = useAuth();
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -55,6 +57,12 @@ export default function Sidebar() {
 
     return (
         <aside className="hidden md:flex w-72 bg-secondary rounded-3xl ml-4 my-4 flex-col p-6">
+            {user && (
+                <div className="text-xs text-secondary-foreground/70 mb-4">
+                    <div>ID: {user.id}</div>
+                    {user.email && <div>Email: {user.email}</div>}
+                </div>
+            )}
             <h2 className="text-lg font-semibold text-secondary-foreground mb-4">Documents</h2>
 
             <div className="relative mb-4">

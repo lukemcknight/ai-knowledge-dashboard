@@ -3,12 +3,7 @@ import { sendQuery } from '../api/file.js';
 import SearchInput from "./SearchInput.jsx";
 
 export default function FileSearch({ setAnswer, setLoading, setChats }) {
-    const [query, setQuery] = useState(null);
     const [error, setError] = useState(null);
-
-    const handleQuerySearch = (event) => {
-        setQuery(event.target.value);
-    };
 
 
     const uploadQuery = async (query) => {

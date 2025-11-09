@@ -1,8 +1,16 @@
 const API_BASE_URL = "http://localhost:8000/api";
 
+const getAuthHeader = () => {
+    const token = localStorage.getItem('token');
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+};
+
 export async function sendFile(formData) {
     const response = await fetch(`${API_BASE_URL}/fileupload/`, {
         method: "POST",
+        headers: {
+            ...getAuthHeader()
+        },
         body: formData,
     });
 
@@ -19,7 +27,10 @@ export async function sendFile(formData) {
 export async function sendQuery(userQuery) {
     const response = await fetch(`${API_BASE_URL}/search/`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json",
+            ...getAuthHeader()
+        },
         body: JSON.stringify({ query: userQuery }),
     });
 
@@ -35,7 +46,8 @@ export async function sendQuery(userQuery) {
 
 export async function getArticles() {
     const response = await fetch(`${API_BASE_URL}/articlefind/`, {
-        method: "GET"
+        method: "GET",
+        headers: getAuthHeader()
     })
 
     if (!response.ok) {
