@@ -59,7 +59,6 @@ export default function Sidebar() {
         <aside className="hidden md:flex w-72 bg-secondary rounded-3xl ml-4 my-4 flex-col p-6">
             {user && (
                 <div className="text-xs text-secondary-foreground/70 mb-4">
-                    <div>ID: {user.id}</div>
                     {user.email && <div>Email: {user.email}</div>}
                 </div>
             )}
